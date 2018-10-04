@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>carousel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+</head>
+
+<body>
+    <div class="slide">
+        <div class="slide-images" data-active="0" data-imgs="3">
+            <img src="1.jpg" alt="" class="slide-img slide-active">
+            <img src="2.jpg" alt="" class="slide-img">
+            <img src="3.jpg" alt="" class="slide-img">
+        </div>
+        <button class="slide-button slide-button-left">&lt;</button>
+        <button class="slide-button slide-button-right">&gt;</button>
+    </div>
+
+</body>
+
+</html>
+<script>
+    var checkSlide = function (offset) {
+        var activeIndex = $(".slide-images").data("active");
+        var numOfImgs = $(".slide-images").data("imgs");
+        var i = (activeIndex + offset + numOfImgs) % numOfImgs;
+
+        $(".slide-images").data("active", i);
+        $(".slide-active").fadeOut();
+        $(".slide-active").removeClass("slide-active");
+
+        var activeImg = $($(".slide-img")[i]);
+        activeImg.addClass("slide-active");
+        activeImg.fadeIn();
+    }
+    $(".slide-button").on("click", function (event) {
+        var button = $(event.target);
+        if (button.hasClass("slide-button-left")) {
+            checkSlide(-1);
+        } else {
+            checkSlide(1);
+        }
+
+    })
+</script>
