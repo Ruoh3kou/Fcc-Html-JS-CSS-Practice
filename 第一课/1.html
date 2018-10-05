@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>控制div属性</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .cube {
+            height: 100px;
+            width: 100px;
+            background-color: black;
+            margin: 0 auto;
+        }
+
+        .main {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <button class="width-button button">变宽</button>
+        <button class="height-button button">变高</button>
+        <button class="color-button button">变色</button>
+        <button class="hide-button button">隐藏</button>
+        <button class="revert-button button">重置</button>
+        <div class="cube"></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    var changeStyle = function (elem, attr, value) {
+        elem.style[attr] = value;
+    };
+    window.onload = function () {
+        var attrs = ["width", "height", "background", "display", "display"];
+        var values = ["200px", "200px", "orange", "none", "block"];
+        var btns = document.getElementsByClassName("button");
+        var divCube = document.getElementsByClassName("cube")[0];
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].onclick = function () {
+                if (i === btns.length - 1)
+                    divCube.style.cssText = "";
+                changeStyle(divCube, attrs[i], values[i]);
+            }
+        }
+    }
+</script>
