@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>记住密码提示框</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #container {
+            width: 200px;
+            margin: 10px auto;
+        }
+        #tips {
+            width: 200px;
+            padding: 5px;
+            background:#ffefa4;
+            border:1px solid #f90;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="forgetPWD">
+            <input type="checkbox">
+            两周内自动登录
+        </div>
+        <div id="tips">为了您的信息安全，请不要在网吧或公用电脑上使用此功能！</div>
+
+    </div>
+
+</body>
+<script>
+    var oTag = document.getElementsByTagName("input")[0];
+    var oTip = document.getElementById("tips");
+    oTag.onmouseover = function () {
+        oTip.style.display = "block"
+    };
+    oTag.onmouseout = function () {
+        oTip.style.display = "none"
+    }
+</script>
+
+</html>
