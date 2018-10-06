@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>用循环将三个DIV变色</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .center {
+            text-align: center;
+        }
+
+        .container {
+            height: 200px;
+            width: 660px;
+            margin: 10px auto;
+
+        }
+
+        .divs {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            float: left;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <button id="change-button">点击将DIV变成红色</button>
+    </div>
+    <div class="container">
+        <div class="divs1 divs"></div>
+        <div class="divs2 divs"></div>
+        <div class="divs3 divs"></div>
+    </div>
+</body>
+<script>
+    var obtn = document.getElementById("change-button");
+    var odivs = document.getElementsByClassName("divs");
+    obtn.onclick = function () {
+        for (let i = 0; i < odivs.length; i++) {
+            odivs[i].style.background = "black";
+        }
+    }
+</script>
+
+</html>
