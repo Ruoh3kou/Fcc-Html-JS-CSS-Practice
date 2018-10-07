@@ -1,6 +1,6 @@
-### 根据 Ferris 的一些练习
+### 原生 JavaScript 学习
 
-[原链接](http://www.fgm.cc/learn/)
+[题目链接](http://www.fgm.cc/learn/) 感谢题目作者
 
 #### 第一课
 
@@ -13,7 +13,7 @@
 
 #### 第二课
 
-1. 百度输入法
+1. 百度输入法 √
 2. 点击 Div，显示其 innerHTML
 3. 求出数组中所有数字的和
 4. 弹出层效果
