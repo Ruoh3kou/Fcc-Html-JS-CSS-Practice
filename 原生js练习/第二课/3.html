@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>求出数组中所有数字的和 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body{
+            padding: 0;
+        }
+        #outer{
+            width: 400px;
+            margin: 0 auto;
+        }
+        button{
+            margin: 10px 0;
+            display: block;
+        }
+        strong{
+            color: red;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer">
+        <input type="text" value="1,2,3"><small> 输入数字求和，数字之间用半角","号分隔 </small>
+        <button>求和</button>
+        <strong></strong>
+    </div>
+</body>
+<script>
+	var oBtn = document.getElementsByTagName("button")[0];
+	var oInput = document.getElementsByTagName("input")[0]
+	var oStrong = document.getElementsByTagName("strong")[0];
+	oInput.onkeyup = function ()
+	{
+		this.value = this.value.replace(/[^(\d)|(,)]/,"")
+	}
+	oBtn.onclick = function ()
+	{
+		var sum = 0;
+		var oInput = document.getElementsByTagName("input")[0].value.split(",");
+		for (var i in oInput)
+		{
+			sum += parseInt(oInput[i])
+		}
+		oStrong.innerHTML = sum
+	}
+</script>
+</html>
