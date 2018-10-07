@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>图片列表：鼠标移入/移出改变图片透明度</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        ul {
+            margin: 0 auto;
+            padding: 5px;
+            border: 1px solid black;
+            list-style-type: none;
+            width: 600px;
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+            overflow: hidden;
+            margin: 10px 10px;
+        }
+
+        img {
+            opacity: 0.5;
+            cursor: crosshair;
+            width: 180px;
+            height: 180px;
+        }
+
+        #container {
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .w {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="ImgList">
+        <div id="container">
+            <li><img src="1.jpg"></li>
+            <li><img src="2.jpg"></li>
+            <li><img src="3.jpg"></li>
+            <li><img src="4.jpg"></li>
+            <li><img src="5.jpg"></li>
+            <li><img src="6.jpg"></li>
+        </div>
+    </ul>
+</body>
+
+<script>
+    var oImgs = document.getElementsByTagName("img");
+    for (let i = 0; i < oImgs.length; i++) {
+        oImgs[i].onmouseenter = function () {
+            this.style.opacity = 1;
+        }
+        oImgs[i].onmouseleave = function () {
+            this.style.opacity = 0.5;
+        }
+
+    }
+</script>
+
+</html>
