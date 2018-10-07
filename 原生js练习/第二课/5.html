@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> 函数传参，改变 Div 任意属性的值</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #outer{
+            margin: 0 auto;
+            width: 250px;
+            text-align: center;
+        }
+        #show{
+            width: 300px;
+            height: 300px;
+            margin: 10px auto;
+            padding: 20px;
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outer">
+        <p>属性名：<input type="text" id="name"></p>
+        <p>属性值：<input type="text" id="value"></p>
+        <button id="confirm">确认</button>
+        <button id="revert">重置</button>
+    </div>
+    <div id="show">
+        在上方输入框输入"属性名"及"属性值"，点击确定按钮查看效果。
+    </div>
+</body>
+<script>
+    var changeStyle = function (elem, name, value) {
+        elem.style[name] = value
+    }
+
+    var oShow = document.getElementById("show");
+    var oBtnConfirm = document.getElementsByTagName("button")[0];
+    var oBtnRevert = document.getElementsByTagName("button")[1];
+    var oInputName = document.getElementsByTagName("input")[0];
+    var oInputValue = document.getElementsByTagName("input")[1];
+    oBtnConfirm.onclick = function () {
+        changeStyle(oShow, oInputName.value, oInputValue.value)
+    }
+    oBtnRevert.onclick = function () {
+        oShow.removeAttribute("style")
+    }
+</script>
+
+</html>
