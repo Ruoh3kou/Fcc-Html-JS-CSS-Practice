@@ -28,7 +28,7 @@
 
 #### FCC 上的一些小项目
 
-1. Build a Tribute Page Incomplete \* (模拟制作个静态页面)
+1. Build a Tribute Page Incomplete \* (模拟制作个静态页面) √
 
 ### 一些其他小练习
 
