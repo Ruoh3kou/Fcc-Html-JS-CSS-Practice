@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>复选框(checkbox)全选/全不选</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+        .outer {
+            margin: 10px auto;
+            width: 130px;
+            background: #eeeeee;
+            border-radius: 10px;
+            border: 1px solid black;
+            padding: 10px;
+            font-size: 12px;
+        }
+        p{
+            margin: 10px 10px;
+        }
+        #inSelect{
+            padding: 10px;
+            color: rgb(187, 128, 241);
+            cursor: pointer;
+        }
+        #inSelect:hover{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <p><input id="SelectAll" type="checkbox"><label>全选</label><label id="inSelect">反选</label></p>
+        <hr>
+        <p><input type="checkbox">吃饭</p>
+        <p><input type="checkbox">睡觉</p>
+        <p><input type="checkbox">洗澡</p>
+        <p><input type="checkbox">喝水</p>
+        <p><input type="checkbox">又吃饭</p>
+    </div>
+</body>
+<script>
+    var oCheckboxs = document.getElementsByTagName("input");
+    var oSelectall = document.getElementById("SelectAll");
+    var oInSelect = document.getElementById("inSelect");
+    var oLab = document.getElementsByTagName("label")[0];
+    var isAllSelect = function () {
+        for (let i = 1; i < oCheckboxs.length; i++) {
+            if (oCheckboxs[i].checked === false) {
+                oSelectall.checked = false;
+                break;
+            };
+        }
+        oLab.innerHTML = oSelectall.checked === true ? "全不选" : "全选";
+    }
+
+    oSelectall.onclick = function () {
+        for (let i = 1; i < oCheckboxs.length; i++) {
+            oCheckboxs[i].checked = this.checked;
+        }
+        isAllSelect();
+    }
+    oInSelect.onclick = function () {
+        for (let i = 0; i < oCheckboxs.length; i++) {
+            oCheckboxs[i].checked = !oCheckboxs[i].checked;
+        }
+        isAllSelect();
+    }
+
+    for (let i = 1; i < oCheckboxs.length; i++) {
+        oCheckboxs[i].onclick = function () {
+            isAllSelect();
+        }
+    }
+</script>
+
+</html>
