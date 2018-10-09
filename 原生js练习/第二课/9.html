@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>单一按钮显示/隐藏一播放列表收缩展开</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .outer {
+            margin: 10px auto;
+            width: 200px;
+            background-color: #eeeeee;
+            border: 1px solid black;
+        }
+
+        .topbar {
+            margin: 2px;
+            background: #d69090 url(imgs/ico.gif) 180px 15px no-repeat;
+            padding: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .open {
+            background: #d69090 url(imgs/ico.gif) 180px -15px no-repeat;
+        }
+
+        ul {
+            margin: 0;
+            padding: 5px;
+            list-style: none;
+            overflow: hidden;
+        }
+
+        li a {
+            font-size: 11px;
+            display: block;
+            color: #6b7980;
+            text-decoration: none;
+            padding: 5px;
+        }
+
+        li a:hover {
+            background-color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <div class="topbar">
+            播放列表...
+        </div>
+        <ul style="display: block;">
+            <li><a href="javascript:;">玩家之徒 - 蔡依林</a></li>
+            <li><a href="javascript:;">原谅我就是这样的女生 - 戴佩妮</a></li>
+            <li><a href="javascript:;">猜不透 - 丁当</a></li>
+            <li><a href="javascript:;">自导自演 - 周杰伦</a></li>
+            <li><a href="javascript:;">浪漫窝 - 弦子</a></li>
+            <li><a href="javascript:;">流年 - 王菲</a></li>
+        </ul>
+    </div>
+</body>
+<script>
+    var oTopbar = document.getElementsByClassName("topbar")[0];
+    var oPlaylist = document.getElementsByTagName("ul")[0];
+    oTopbar.onclick = function () {
+        oPlaylist.style.display = oPlaylist.style.display === "none" ? "block" : "none";
+        oTopbar.className = oTopbar.className === "topbar" ? "topbar open" : "topbar";
+    }
+</script>
+
+</html>
