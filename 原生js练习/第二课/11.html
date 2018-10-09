@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>鼠标移过，修改图片路径</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        body {
+            background: black;
+        }
+
+        .outer {
+            margin: 10px auto;
+            width: 225px;
+            height: 300px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .box {
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+            margin-top: 4px;
+            margin-left: 4px;
+            cursor: pointer;
+        }
+
+        img {
+            width: 70px;
+            height: 70px;
+        }
+
+        .big {
+            width: 130px;
+            height: 130px;
+            cursor: default;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <ul class="box">
+            <li>
+                <img src="imgs/1.jpg">
+            </li>
+            <li>
+                <img src="imgs/2.jpg">
+            </li>
+            <li>
+                <img src="imgs/3.jpg">
+            </li>
+            <li>
+                <img src="imgs/4.jpg">
+            </li>
+            <li>
+                <img src="imgs/5.jpg">
+            </li>
+            <li>
+                <img src="imgs/6.jpg">
+            </li>
+            <li>
+                <img class="big" src="imgs/1.jpg">
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    var oimgs = document.getElementsByTagName("img");
+    var oBigimg = oimgs[oimgs.length - 1];
+    for (let i = 0; i < oimgs.length - 1; i++) {
+        oimgs[i].onmouseenter = function () {
+            oBigimg.src = oimgs[i].src;
+        }
+    }
+</script>
+
+</html>
