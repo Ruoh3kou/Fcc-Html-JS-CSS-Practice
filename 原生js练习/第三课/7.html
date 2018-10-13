@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>简易计算器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .outer {
+            font: 700 24px/1.5 Arial;
+            color: white;
+            margin: 10px auto;
+            width: 285px;
+            height: 400px;
+            background-color: black;
+            position: relative;
+        }
+        p {
+            font-size: 10px;
+            text-align: right;
+            padding: 10px 0px;
+        }
+        .compute {
+            margin: 0 auto;
+            width: 100%;
+            background-color: #ee5757;
+            text-align: right;
+            font: 700 10px Arial;
+            border: 0px;
+            position: absolute;
+        }
+        .show {
+            margin: 10px auto;
+            width: 100%;
+            height: 20%;
+            background-color: #ee5757;
+            text-align: right;
+            font: 700 50px/84px Arial;
+            border: 0px;
+        }
+        ul {
+            list-style: none;
+            color: white;
+            position: relative;
+        }
+        li {
+            margin: 10px 15px 0 0;
+            width: 60px;
+            height: 40px;
+            background-color: #2c1818;
+            text-align: center;
+            line-height: 41px;
+            cursor: pointer;
+            float: left;
+        }
+        li:hover{
+            background-color: #ee5757;
+            color: black;
+        }
+
+        .equal{
+            position:absolute;
+            height: 90px;
+            top: 150px;
+            right: 0;
+        }
+        .n0 {
+            width: 135px;
+        }
+        .mul,.sub,.add,.equal{
+            margin-right: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <p>By Ruoh qq:1101811211</p>
+        <input class="compute" type="text" value="">
+        <input class="show" type="text" value="0">
+        <ul>
+            <li class="clear">c</li>
+            <li class="percent">%</li>
+            <li class="divide">÷</li>
+            <li class="mul">x</li>
+            <li class="n7">7</li>
+            <li class="n8">8</li>
+            <li class="n9">9</li>
+            <li class="sub">-</li>
+            <li class="n4">4</li>
+            <li class="n5">5</li>
+            <li class="n6">6</li>
+            <li class="add">+</li>
+            <li class="n1">1</li>
+            <li class="n2">2</li>
+            <li class="n3">3</li>
+            <li class="equal">=</li>
+            <li class="n0">0</li>
+            <li class="point">.</li>
+        </ul>
+    </div>
+</body>
+<script>
+    var oLis = document.getElementsByTagName("li");
+    var oAdd = document.getElementsByClassName("add")[0];
+    var oSub = document.getElementsByClassName("sub")[0];
+    var oEqual = document.getElementsByClassName("equal")[0];
+    var oMul = document.getElementsByClassName("mul")[0];
+    var oDivide = document.getElementsByClassName("divide")[0];
+    var oPercent = document.getElementsByClassName("percent")[0];
+    var oCalc = document.getElementsByClassName("calc")[0];
+    var oShow = document.getElementsByClassName("show")[0];
+    var oCompute = document.getElementsByClassName("compute")[0];
+    var over = false;
+
+    for (let i = 0; i < oLis.length; i++) {
+        oLis[i].onclick = function () {
+            switch (this.innerHTML) {
+                case "c":
+                    oShow.value = 0;
+                    oCompute.value = "";
+                    break;
+                case "%":
+                    count("%")
+                    break;
+                case "÷":
+                    count("/")
+                    break;
+                case "x":
+                    count("*")
+                    break;
+                case "-":
+                    count("-")
+                    break;
+                case "+":
+                    count("+")
+                    break;
+                case "=":
+                    over || (oCompute.value += oShow.value);
+                    oShow.value = eval(oCompute.value.replace(/\%\/\*\-\+/, ''));
+                    oShow.value = oShow.value.substr(0, 10).replace("NaN", 0);
+                    over = true;
+                    break;
+                case ".":
+                    if (oShow.value.search(/[\.\%\/\*\-\+]/) != -1)
+                        break;
+                default:
+                    over && (oShow.value = 0, oCompute.value = "", over = false);
+                    oShow.value.length < 10 && (oShow.value = (oShow.value + this.innerHTML).replace(/^[0\%\/\*\-\+](\d)/, "$1"));
+            }
+        }
+    }
+
+    function count(a) {
+        if (over) {
+            oCompute.value = oShow.value + a;
+            oShow.value = a;
+            over = false;
+        }
+        else {
+            /[\%\/\*\-\+]$/.test(oShow.value) || (oCompute.value += oShow.value);
+            oShow.value = a;
+            /[\%\/\*\-\+]$/.test(oCompute.value) || (oCompute.value += oShow.value);
+            oCompute.value = oCompute.value.slice(-1) != a ? oCompute.value.replace(/.$/, a) : oCompute.value
+        }
+    }
+
+</script>
+
+</html>

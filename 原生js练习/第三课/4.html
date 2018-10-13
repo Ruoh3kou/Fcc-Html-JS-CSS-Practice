@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>输入两个数字，比较大小</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .outer {
+            text-align: center;
+                }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <input type="text">
+        <span>Vs</span>
+        <input type="text">
+        <button>最大的数是》</button>
+        <span id="out">?</span>
+    </div>
+</body>
+<script>
+    var oInput = document.getElementsByTagName("input");
+    var oBtn = document.getElementsByTagName("button")[0];
+    var oOut = document.getElementById("out");
+    oBtn.onclick = function () {
+        oOut.innerHTML = oInput[0].value > oInput[1].value ? oInput[0].value : oInput[1].value;
+        if (oInput[0].value === oInput[1].value) {
+            oOut.innerHTML = "一样大";
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>页面加载后累加1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <strong style="font-size:20px"></strong>
+</body>
+<script>
+    var oNum = document.getElementsByTagName("strong")[0];
+    var i = 0;
+    setInterval(function () {
+        oNum.innerHTML = i++;
+    }, 1000)
+</script>
+
+</html>
