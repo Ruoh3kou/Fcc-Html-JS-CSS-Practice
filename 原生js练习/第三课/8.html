@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>简易时钟</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .outer {
+            font: 700 24px/1.5 Arial;
+            margin: 10px auto;
+            width: 300px;
+            background-color: #f04336;
+            text-align: center;
+        }
+
+        span {
+            background-color: rgb(247, 137, 137);
+            width: 30px;
+            padding: 0px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <span></span>点
+        <span></span>分
+        <span></span>秒
+    </div>
+</body>
+
+</html>
+<script>
+    var oSpans = document.getElementsByTagName("span");
+    getTimes();
+    setInterval(getTimes, 1000);
+
+    function getTimes() {
+        var oDate = new Date();
+        var aDate = [oDate.getHours(), oDate.getMinutes(), oDate.getSeconds()];
+        for (var i in aDate) oSpans[i].innerHTML = format(aDate[i])
+    }
+
+    function format(a) {
+        return a.toString().replace(/^(\d)$/, "0$1")
+    }
+</script>
