@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>倒计时时钟</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .outer {
+            font: 700 24px/1.5 Arial;
+            margin: 10px auto;
+            width: 300px;
+            background-color: #f04336;
+            text-align: center;
+        }
+
+        span {
+            background-color: rgb(247, 137, 137);
+            width: 30px;
+            padding: 0px 10px;
+        }
+        button {
+            display: block;
+            padding: 10px;
+            margin: 10px auto;
+            width: 100px;
+            background: green;
+        }
+        
+        .stop {
+            background: #f04336;
+            text: 暂停;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <span>01</span>
+        分钟
+        <span>40</span>
+        秒
+        <button>
+            启动
+        </button>
+    </div>
+</body>
+
+</html>
+<script>
+    oBtn=document.getElementsByTagName("button")[0];
+    oMin=document.getElementsByTagName("span")[0];
+    oSec=document.getElementsByTagName("span")[1];
+    var timer=null;
+    oBtn.onclick = function ()
+	{
+		this.className == "" ? (timer = setInterval(updateTime, 1000), updateTime()) : (clearInterval(timer));
+		this.className == '' ? (this.className="stop",this.innerHTML="暂停") : (this.className="",this.innerHTML="启动");	
+	};
+
+    var format = function(time) {
+        if (time<10)
+            return '0'+time;
+        return time;
+    }
+
+    var updateTime = function ()
+	{
+		var oRemain = oMin.innerHTML.replace(/^0/,'') * 60 + parseInt(oSec.innerHTML.replace(/^0/,''));
+		if(oRemain <= 0)
+		{
+			clearInterval(timer);
+			return
+		}
+		oRemain--;
+		oMin.innerHTML = format(parseInt(oRemain / 60));
+		oRemain %= 60;
+		oSec.innerHTML = format(parseInt(oRemain));
+	}
+</script>
