@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>setTimeout应用</title>
+    <style>
+        #outer {
+            margin: 10px auto;
+            background-color: bisque;
+        }
+
+        ul {
+            height: 36px;
+            line-height: 36px;
+            margin: 10px auto;
+            padding: 0px 10px;
+        }
+
+        li {
+            float: left;
+            width: 100px;
+            list-style: none;
+            text-align: center;
+            background-color: blanchedalmond;
+        }
+
+        li a {
+            font-size: 14px;
+            width: 102px;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            margin: 0 2px 0 4px;
+        }
+
+        li p {
+            margin: 0px;
+            position: absolute;
+            background-color: blanchedalmond;
+        }
+
+        li p span {
+            margin: 0 10px;
+            background-color: sandybrown;
+        }
+
+        li p a {
+            font-size: 12px;
+            display: inline;
+            color: #235e99;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="outer">
+        <ul>
+            <li><a href="">one</a>
+                <div class="subnav" style="display : none">
+                    <p>
+                        <span><a href="">嘻嘻</a></span>
+                        <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span> <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span> <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span>
+                    </p>
+                </div>
+            </li>
+            <li><a href="">two</a>
+                <div class="subnav" style="display : none">
+                    <p>
+                        <span><a href="">嘻嘻</a></span>
+                        <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span> <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span> <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span>
+                    </p>
+                </div>
+            </li>
+            <li><a href="">three</a>
+                <div class="subnav" style="display : none">
+                    <p>
+                        <span><a href="">嘻嘻</a></span>
+                        <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span> <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span> <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span>
+                    </p>
+                </div>
+            </li>
+            <li><a href="">four</a>
+                <div class="subnav" style="display : none">
+                    <p>
+                        <span><a href="">嘻嘻</a></span>
+                        <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span> <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span> <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span>
+                    </p>
+                </div>
+            </li>
+            <li><a href="">five</a>
+                <div class="subnav" style="display : none">
+                    <p>
+                        <span><a href="">嘻嘻</a></span>
+                        <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span> <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span> <span><a href="">哈哈</a></span>
+                        <span><a href="">哼哼</a></span>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script>
+    var get = {
+        byId: function (id) {
+            return document.getElementById(id);
+        },
+        byTag: function (tag, oParent) {
+            return (oParent || document).getElementsByTagName(tag);
+        },
+        byClass: function (Classname, oParent) {
+            var oClass = [];
+            var reClass = new RegExp("(^| )" + Classname + "( |$)");
+            var oElem = this.byTag("*", oParent);
+            for (var i = 0; i < oElem.length; i++)
+                reClass.test(oElem[i].className) && oClass.push(oElem[i]);
+            return oClass;
+        }
+    }
+
+    var oLi = get.byTag("li");
+    var oOuter = get.byId("outer");
+    var oSubNav = get.byClass("subnav", outer);
+    var oSubNavOfThis = null;
+    var timer = null;
+
+    for (var i = 0; i < oLi.length; i++) {
+        oLi[i].onmouseover = function () {
+            for (var i = 0; i < oSubNav.length; i++)
+                oSubNav[i].style.display = "none";
+
+            oSubNavOfThis = get.byClass("subnav", this)[0];
+            oSubNavOfThis.style.display = "block";
+            clearTimeout(timer);
+
+            //阻止事件冒泡
+            oSubNav.onmouseover = function (event) {
+                (event || window.event).cancelBubble = true;
+                clearTimeout(timer)
+            }
+        }
+        oSubNavOfThis = oSubNav[i];
+        oLi[i].onmouseout = function () {
+            timer = setTimeout(function () {
+                oSubNavOfThis.style.display = "none"
+            }, 100)
+        }
+    }
+</script>
