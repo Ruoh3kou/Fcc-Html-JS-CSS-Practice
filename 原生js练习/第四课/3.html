@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>自动播放———幻灯片效果</title>
+    <title>自动改变方向———幻灯片效果</title>
     <style>
         body {
             margin: 0;
@@ -85,7 +85,7 @@
             var aNums = aUls[1].getElementsByTagName("li");
             var timer = player = null;
             var curIndex = 0;
-
+            var Dir = 1;
             // 鼠标放在哪个哪个亮
             for (var i = 0; i < aNums.length; i++) {
                 (function (i) {
@@ -98,8 +98,9 @@
             // 自动播放
             var autoPlay = function () {
                 play = setInterval(function () {
-                    curIndex++;
-                    curIndex >= aImgs.length && (curIndex = 0);
+                    curIndex += Dir > 0 ? 1 : -1;
+                    curIndex >= aImgs.length && (curIndex -= 2) && (Dir = 0);
+                    curIndex < 0 && (curIndex += 2) && (Dir = 1);
                     show(curIndex);
                 }, 2000);
             }
@@ -114,7 +115,7 @@
                 autoPlay();//开始自动播放
             }
             var show = function (index) {
-                curIndex=index;
+                curIndex = index;
                 var alpha = 50;
                 for (let i = 0; i < aNums.length; i++) {
                     aNums[i].classList.remove("curNum");
