@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自动播放———幻灯片效果</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: black;
+        }
+
+        #outer {
+            position: relative;
+            margin: 10px auto;
+            background-color: white;
+            border-radius: 10px;
+            width: 360px;
+            height: 180px;
+            vertical-align: middle;
+            border: 8px solid #fff;
+        }
+
+        ul {
+            margin: 0px;
+            list-style-type: none;
+            position: relative;
+        }
+
+        .imgs {
+            position: relative;
+            height: 180px;
+        }
+
+        .imgs li {
+            opacity: 1;
+            top: 0;
+            left: 0;
+            position: absolute;
+            opacity: 0;
+        }
+
+        .imgs li.curImg {
+            opacity: 1;
+        }
+
+        img {
+            width: 360px;
+            height: 180px;
+            object-fit: cover
+        }
+
+        .numbers {
+            position: absolute;
+            right: 0;
+            bottom: 5px;
+        }
+
+        .numbers li {
+            color: #fff;
+            float: left;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin-right: 5px;
+            overflow: hidden;
+            background: #F90;
+            opacity: 0.7;
+            border-radius: 20px;
+        }
+
+        .numbers li.curNum {
+            opacity: 1;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oOuter = document.getElementById("outer");
+            var aUls = document.getElementsByTagName("ul");
+            var aImgs = aUls[0].getElementsByTagName("li");
+            var aNums = aUls[1].getElementsByTagName("li");
+            var timer = player = null;
+            var curIndex = 0;
+
+            // 鼠标放在哪个哪个亮
+            for (var i = 0; i < aNums.length; i++) {
+                (function (i) {
+                    aNums[i].onmouseover = function () {
+                        show(i);
+                    }
+                })(i)
+            }
+
+            // 自动播放
+            var autoPlay = function () {
+                play = setInterval(function () {
+                    curIndex++;
+                    curIndex >= aImgs.length && (curIndex = 0);
+                    show(curIndex);
+                }, 2000);
+            }
+            autoPlay();//开始自动播放
+
+            // 关闭自动播放
+            oOuter.onmouseover = function () {
+                clearInterval(player);
+            }
+            var show = function (index) {
+                var alpha = 0;
+                for (let i = 0; i < aNums.length; i++) {
+                    aNums[i].classList.remove("curNum");
+                    aImgs[i].classList.remove("curImg");
+                    aImgs[i].style.opacity=0;
+                }
+                aNums[index].classList.add("curNum");
+                aImgs[index].classList.add("curImg");
+
+                clearInterval(timer);
+
+                timer = setInterval(function () {
+                    alpha += 2;
+                    alpha > 100 && (alpha = 100);
+                    aImgs[index].style.opacity = alpha / 100;
+                    alpha == 100 && clearInterval(timer)
+                }, 20);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="outer">
+        <ul class="imgs">
+            <li class="curImg"><img src="imgs/1.jpeg" alt=""></li>
+            <li><img src="imgs/2.jpeg" alt=""></li>
+            <li><img src="imgs/3.jpeg" alt=""></li>
+            <li><img src="imgs/4.jpeg" alt=""></li>
+            <li><img src="imgs/5.jpeg" alt=""></li>
+        </ul>
+        <ul class="numbers">
+            <li class="curNum">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+</body>
+
+</html>
