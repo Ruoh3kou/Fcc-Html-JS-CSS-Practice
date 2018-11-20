@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS函数—设置/读取对象的属性</title>
+    <style>
+        .outer {
+            margin: 10px auto;
+            width: 400px;
+            height: 300px;
+            background-color: #e65757;
+        }
+
+        button {
+            margin: 20px 20px;
+            background-color: rgb(158, 201, 57);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <button>Get Style</button>
+        <button>Set Style</button>
+        <button>Default Style</button>
+    </div>
+</body>
+<script>
+    var oBtns = document.getElementsByTagName("button");
+    var aOuter = document.getElementsByClassName("outer")[0];
+    var aBtn_Get = oBtns[0];
+    var aBtn_Set = oBtns[1];
+    var aBtn_Default = oBtns[2];
+    var css = function (obj, attr, value) {
+        switch (arguments.length) {
+            case 2:
+                if (typeof arguments[1] == "object") {
+                    //二个参数, 如果第二个参数是对象, 批量设置属性
+                    for (var i in attr)
+                        obj.style[i] = attr[i]
+                }
+                else {
+                    //二个参数, 如果第二个参数是字符串, 读取属性值
+                    // 前一种兼容ie，后一种兼容chrome/firefox.
+                    return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, null)[attr]
+                }
+                break;
+            case 3:
+                //三个参数, 单一设置属性
+                obj.style[attr] = value;
+                break;
+            default:
+                alert("参数错误！")
+        }
+    }
+    // 第一个按钮
+    aBtn_Get.onclick = function () {
+        alert("width：" + css(aOuter, "width") + "\n" +
+            "height：" + css(aOuter, "height") + "\n" +
+            "background-color：" + css(aOuter, "background-color")
+        );
+    }
+    // 第二个按钮
+    aBtn_Set.onclick = function () {
+        css(aOuter,{width: "380px", height: "100px", borderColor: "#0084ff", backgroundColor: "black"});
+        //三个参数, 属性单一设置
+		for (i = 0; i < oBtns.length; i++) css(oBtns[i], "backgroundColor", "blue")
+    }
+    //第三个按钮点击事件
+	aBtn_Default.onclick = function ()
+	{
+		//两个参数, 第二个参数为对象, 属性批量设置
+		css(aOuter, {width: "400px", height: "200px", borderColor: "#f60", backgroundColor: "#e65757"});
+		//三个参数, 属性单一设置
+		for (i = 0; i < oBtns.length; i++) css(oBtns[i], "backgroundColor", "rgb(158, 201, 57)")	
+	}
+</script>
+
+</html>
