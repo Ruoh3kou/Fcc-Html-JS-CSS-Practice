@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>agruments应用——求出函数参数的总和</title>
+    <style>
+        pre {
+            color: green;
+            padding: 10px 15px;
+            background: #f0f0f0;
+            border: 1px dotted #333;
+            font: 12px/1.5 Courier New;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer">
+        <pre>
+        &lt;script type="text/javascript"&gt;
+                function sum()
+                {
+                    var res=0;
+                    for (var i = 0; i &lt; arguments.length; i++)
+                    {
+                        res += arguments[i];
+                    }
+                    return res;
+                }
+                alert(sum(1,2,3,4,5,6,7,8,9,10)) 
+        &lt;/script&gt;
+        </pre>
+    </div>
+</body>
+<script>
+    function sum() {
+        var res = 0;
+        for (var i = 0; i < arguments.length; i++)
+        {
+            console.log(res);
+            res += arguments[i];
+        }
+        return res;
+    }
+    alert(sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) </script>
+
+</html>
