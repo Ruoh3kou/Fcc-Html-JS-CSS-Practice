@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组练习：各种数组方法的使用</title>
+    <style>
+        div {
+            border: 1px dotted red;
+            padding: 10px 15px;
+            background-color: #f7e6e6;
+            margin: 12px 0;
+            word-wrap: break-word;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>January(1),February(2),March(3),April(4),May(5),June(6),July(7),Aguest(8),September(9),October(10),November(11),December(12)</div>
+    <input type="button" value="删除jan">
+    <input type="button" value="删除dec">
+
+    <div>0,1,2,3,4,5,6,7,8,9</div>
+    <input type="button" value="复制">
+    <input type="button" value="还原">
+
+    <div>red,green,blue,white,yellow,black,brown</div>
+    <input type="button" value="还原">
+    <input type="button" value="删除前3项">
+    <input type="button" value="删除第2-3项">
+    <input type="button" value="在第2项后插入(orange,purple)">
+    <input type="button" value="替换第二项和第三项">
+</body>
+<script>
+    aDivs = document.getElementsByTagName("div");
+    aBtns = document.getElementsByTagName("input");
+    aTemp = [];
+    function getArr(str) {
+        var aTemp = [];
+        console.log(str);
+        str = str.split(",");
+        for (var i in str)
+            aTemp.push(str[i]);
+        return aTemp;
+    }
+    var bt1 = bt2 = true;
+
+    // 删除/添加jan
+    aBtns[0].onclick = function () {
+        aTemp = getArr(aDivs[0].innerHTML);
+        if (bt1) {
+            //删除第一项
+            aTemp.shift();
+            this.value = this.value.replace("删除", "添加");
+            aDivs[0].innerHTML = aTemp.join();
+            bt1 = false;
+        }
+        else {
+            //添加第一项
+            aTemp.unshift("January(1)");
+            this.value = this.value.replace("添加", "删除");
+            aDivs[0].innerHTML = aTemp.join();
+            bt1 = true;
+        }
+    }
+
+    // 删除/添加dec
+    aBtns[1].onclick = function () {
+        aTemp = getArr(aDivs[0].innerHTML);
+        if (bt2) {
+            //删除倒数第一项
+            aTemp.pop();
+            this.value = this.value.replace("删除", "添加");
+            aDivs[0].innerHTML = aTemp.join();
+            bt2 = false;
+        }
+        else {
+            //添加倒数第一项
+            aTemp.push("December(12)");
+            this.value = this.value.replace("添加", "删除");
+            aDivs[0].innerHTML = aTemp.join();
+            bt2 = true;
+        }
+    }
+
+    //复制
+    aBtns[2].onclick = function () {
+        aTemp = getArr(aDivs[1].innerHTML);
+        aDivs[1].innerHTML = aTemp.concat(aTemp).toString();
+    }
+
+    //还原
+    aBtns[3].onclick = function () {
+        aTemp = getArr(aDivs[1].innerHTML);
+        //设置数组长度
+        aTemp.length = 10;
+        //输出
+        aDivs[1].innerHTML = aTemp.join()
+    }
+
+    //还原
+    aBtns[4].onclick = function () {
+        aTemp = ["red", "green", "blue", "white", "yellow", "black", "brown"];
+        aDivs[2].innerHTML = aTemp.join()
+    }
+    // 删除前三项
+    aBtns[5].onclick = function () {
+        aTemp = getArr(aDivs[2].innerHTML);
+        aTemp.splice(0, 3);
+        aDivs[2].innerHTML = aTemp.join();
+    }
+    // 删除第2-3项
+    aBtns[6].onclick = function () {
+        aTemp = getArr(aDivs[2].innerHTML);
+        aTemp.splice(1, 2);
+        aDivs[2].innerHTML = aTemp.join();
+    }
+    // 在第二项后插入
+    aBtns[7].onclick = function () {
+        aTemp = getArr(aDivs[2].innerHTML);
+        aTemp.splice(1, 0, "orange", "purple");
+        aDivs[2].innerHTML = aTemp.join();
+    }
+    // 替换第二项和第三项
+    aBtns[8].onclick = function () {
+        aTemp = getArr(aDivs[2].innerHTML);
+        aTemp.splice(1, 2, "xx", "hh");
+        aDivs[2].innerHTML = aTemp.join();
+    }
+</script>
+
+</html>
