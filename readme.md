@@ -46,7 +46,7 @@
 4. agruments应用一求出函数参数的总合 👌(arguments)
 5. css函数一设置/读取对象的属性 👌(style/getComputedStyle/currentStyle)
 6. 当前输入框高亮显示 👌 (onfocus/onblur)
-7. 数组练习：各种数组方法的使用 
+7. 数组练习：各种数组方法的使用 👌(事件)
 8. 事件练习：封装兼容性添加、删除事件的函数
 9. 星级评分系统
 
